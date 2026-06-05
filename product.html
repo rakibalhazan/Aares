@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Product — Aares</title>
+  <meta name="description" id="page-desc" content="View product details at Aares.">
+  <link rel="icon" href="assets/logo.webp" type="image/webp">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1A1A1A">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/product.css">
+</head>
+<body>
+
+  <div id="progress-bar"></div>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__brand">
+        <img src="assets/logo.webp" alt="Aares" class="navbar__logo" width="32" height="32">
+        <span class="navbar__name">Aares</span>
+      </a>
+      <div class="navbar__links">
+        <a href="index.html"  class="navbar__link">Home</a>
+        <a href="search.html" class="navbar__link">Shop</a>
+      </div>
+      <div class="navbar__actions">
+        <a href="search.html"  class="navbar__icon-btn" aria-label="Search"><i data-lucide="search"></i></a>
+        <a href="cart.html"    class="navbar__icon-btn" aria-label="Cart"><i data-lucide="shopping-cart"></i><span class="cart-badge hidden"></span></a>
+        <a href="account.html" class="navbar__icon-btn" aria-label="Account"><i data-lucide="user"></i></a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-wrapper" id="main-content">
+    <div class="container">
+
+      <!-- Breadcrumb -->
+      <nav class="breadcrumb" id="js-breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html"><i data-lucide="home"></i></a>
+        <span class="breadcrumb__sep"><i data-lucide="chevron-right"></i></span>
+        <a href="search.html">Shop</a>
+        <span class="breadcrumb__sep"><i data-lucide="chevron-right"></i></span>
+        <span class="breadcrumb__current" id="js-breadcrumb-name">Loading...</span>
+      </nav>
+
+      <!-- Product Content (skeleton while loading) -->
+      <div id="js-product-content">
+        <div class="product-skeleton">
+          <div class="product-skeleton__gallery skeleton"></div>
+          <div class="product-skeleton__info">
+            <div class="skeleton" style="height:18px;width:60%;margin-bottom:var(--sp-4)"></div>
+            <div class="skeleton" style="height:40px;width:85%;margin-bottom:var(--sp-6)"></div>
+            <div class="skeleton" style="height:24px;width:40%;margin-bottom:var(--sp-8)"></div>
+            <div class="skeleton" style="height:80px;margin-bottom:var(--sp-8)"></div>
+            <div class="skeleton" style="height:52px;width:220px"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Reviews Section -->
+    <div class="reviews-section" id="js-reviews-section" hidden>
+      <div class="container">
+        <div class="reviews-header reveal">
+          <div>
+            <h2 class="section-title">Customer <span>Reviews</span></h2>
+            <div class="reviews-summary" id="js-reviews-summary"></div>
+          </div>
+        </div>
+        <!-- Review Form (shown only to eligible purchasers) -->
+        <div class="review-form-wrap" id="js-review-form-wrap" hidden>
+          <h3 class="review-form__title">Write a Review</h3>
+          <div class="review-form">
+            <div class="star-picker" id="js-star-picker" role="group" aria-label="Your rating">
+              <button class="star-pick" data-value="1" aria-label="1 star"><i data-lucide="star"></i></button>
+              <button class="star-pick" data-value="2" aria-label="2 stars"><i data-lucide="star"></i></button>
+              <button class="star-pick" data-value="3" aria-label="3 stars"><i data-lucide="star"></i></button>
+              <button class="star-pick" data-value="4" aria-label="4 stars"><i data-lucide="star"></i></button>
+              <button class="star-pick" data-value="5" aria-label="5 stars"><i data-lucide="star"></i></button>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="js-review-comment">Your Review</label>
+              <textarea id="js-review-comment" class="form-textarea" placeholder="Share your experience with this product..." rows="4" maxlength="1000"></textarea>
+            </div>
+            <button class="btn btn--primary" id="js-submit-review">
+              <i data-lucide="send"></i>
+              <span class="btn__text">Submit Review</span>
+            </button>
+            <p class="form-hint">Your review will be visible after approval.</p>
+          </div>
+        </div>
+        <!-- Review List -->
+        <div class="reviews-list" id="js-reviews-list" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <!-- Related Products -->
+    <section class="section" id="js-related-section" hidden aria-labelledby="related-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <h2 class="section-title" id="related-title">You May <span>Also Like</span></h2>
+        </div>
+        <div class="product-grid" id="js-related-grid"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Image Lightbox -->
+  <div class="lightbox" id="js-lightbox" hidden role="dialog" aria-modal="true" aria-label="Product image">
+    <div class="lightbox__backdrop" id="js-lightbox-backdrop"></div>
+    <div class="lightbox__inner">
+      <button class="lightbox__close" id="js-lightbox-close" aria-label="Close image">
+        <i data-lucide="x"></i>
+      </button>
+      <button class="lightbox__nav lightbox__prev" id="js-lightbox-prev" aria-label="Previous image">
+        <i data-lucide="chevron-left"></i>
+      </button>
+      <img class="lightbox__img" id="js-lightbox-img" src="" alt="Product image">
+      <button class="lightbox__nav lightbox__next" id="js-lightbox-next" aria-label="Next image">
+        <i data-lucide="chevron-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <a href="index.html"   class="bottom-nav__item"><i data-lucide="house"></i><span class="bottom-nav__label">Home</span></a>
+    <a href="search.html"  class="bottom-nav__item"><i data-lucide="search"></i><span class="bottom-nav__label">Search</span></a>
+    <a href="cart.html"    class="bottom-nav__item"><i data-lucide="shopping-cart"></i><span class="bottom-nav__badge hidden"></span><span class="bottom-nav__label">Cart</span></a>
+    <a href="account.html" class="bottom-nav__item"><i data-lucide="user"></i><span class="bottom-nav__label">Account</span></a>
+  </nav>
+
+  <button id="back-to-top" aria-label="Back to top"><i data-lucide="arrow-up"></i></button>
+  <div id="offline-banner" role="alert"><i data-lucide="wifi-off"></i> No internet connection</div>
+  <div id="toast-container" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/product.js"></script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop All Products — Aares</title>
+  <meta name="description" content="Browse all products at Aares. Filter by category, price, and ratings. Fast delivery across Bangladesh.">
+  <link rel="canonical" href="https://aares.vercel.app/search.html">
+  <meta property="og:title"       content="Shop All Products — Aares">
+  <meta property="og:description" content="Browse hundreds of products with fast delivery across Bangladesh.">
+  <meta property="og:type"        content="website">
+  <link rel="icon"     href="assets/logo.webp" type="image/webp">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1A1A1A">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/search.css">
+</head>
+<body>
+
+  <div id="progress-bar"></div>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__brand">
+        <img src="assets/logo.webp" alt="Aares" class="navbar__logo" width="32" height="32">
+        <span class="navbar__name">Aares</span>
+      </a>
+      <div class="navbar__links">
+        <a href="index.html"  class="navbar__link">Home</a>
+        <a href="search.html" class="navbar__link">Shop</a>
+      </div>
+      <div class="navbar__actions">
+        <a href="search.html"  class="navbar__icon-btn" aria-label="Search">
+          <i data-lucide="search"></i>
+        </a>
+        <a href="cart.html" class="navbar__icon-btn" aria-label="Cart">
+          <i data-lucide="shopping-cart"></i>
+          <span class="cart-badge hidden"></span>
+        </a>
+        <a href="account.html" class="navbar__icon-btn" aria-label="Account">
+          <i data-lucide="user"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-wrapper" id="main-content">
+
+    <!-- Search Header -->
+    <div class="search-header">
+      <div class="container">
+        <div class="search-bar-wrap">
+          <div class="search-input-box">
+            <i data-lucide="search" class="search-icon"></i>
+            <input
+              type="search"
+              id="js-search-input"
+              class="search-input"
+              placeholder="Search products..."
+              autocomplete="off"
+              aria-label="Search products"
+            >
+            <button class="search-clear hidden" id="js-search-clear" aria-label="Clear search">
+              <i data-lucide="x"></i>
+            </button>
+          </div>
+          <button class="btn btn--outline filter-toggle" id="js-filter-toggle" aria-label="Open filters" aria-expanded="false">
+            <i data-lucide="sliders-horizontal"></i>
+            <span>Filters</span>
+            <span class="filter-count hidden" id="js-filter-count">0</span>
+          </button>
+        </div>
+
+        <!-- Active filter tags -->
+        <div class="active-filters" id="js-active-filters" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="container search-layout">
+
+      <!-- Filter Sidebar (desktop) -->
+      <aside class="filter-sidebar" id="js-filter-sidebar" aria-label="Product filters">
+        <div class="filter-sidebar__inner">
+          <h2 class="filter-section__title">Sort By</h2>
+          <div class="filter-radio-group" id="js-sort-options" role="radiogroup" aria-label="Sort options">
+            <label class="filter-radio"><input type="radio" name="sort" value="newest" checked> Newest first</label>
+            <label class="filter-radio"><input type="radio" name="sort" value="price_asc"> Price: Low to High</label>
+            <label class="filter-radio"><input type="radio" name="sort" value="price_desc"> Price: High to Low</label>
+            <label class="filter-radio"><input type="radio" name="sort" value="top_rated"> Top Rated</label>
+            <label class="filter-radio"><input type="radio" name="sort" value="popular"> Most Popular</label>
+          </div>
+
+          <div class="filter-divider"></div>
+
+          <h2 class="filter-section__title">Category</h2>
+          <div class="filter-check-group" id="js-category-filters" role="group" aria-label="Category filters">
+            <label class="filter-check">
+              <input type="checkbox" name="category" value="" checked> All categories
+            </label>
+            <!-- Injected by JS -->
+          </div>
+
+          <div class="filter-divider"></div>
+
+          <h2 class="filter-section__title">Price Range</h2>
+          <div class="price-range-group">
+            <div class="price-input-row">
+              <div class="price-input-wrap">
+                <span class="price-currency">৳</span>
+                <input type="number" id="js-price-min" class="price-input" placeholder="Min" min="0">
+              </div>
+              <span class="price-range-sep">—</span>
+              <div class="price-input-wrap">
+                <span class="price-currency">৳</span>
+                <input type="number" id="js-price-max" class="price-input" placeholder="Max" min="0">
+              </div>
+            </div>
+            <button class="btn btn--outline btn--sm btn--block" id="js-apply-price">Apply</button>
+          </div>
+
+          <div class="filter-divider"></div>
+
+          <button class="btn btn--ghost btn--sm" id="js-clear-filters">
+            <i data-lucide="x"></i> Clear all filters
+          </button>
+        </div>
+      </aside>
+
+      <!-- Product Grid Area -->
+      <div class="search-results">
+        <div class="results-bar">
+          <p class="results-count" id="js-results-count" aria-live="polite"></p>
+        </div>
+        <div class="product-grid" id="js-product-grid" aria-live="polite" aria-label="Search results">
+          <!-- Injected by JS -->
+        </div>
+        <div class="load-more-wrap" id="js-load-more-wrap" hidden>
+          <button class="btn btn--outline" id="js-load-more">
+            <span class="btn__text">Load More</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Filter Drawer (mobile) -->
+  <div class="filter-drawer" id="js-filter-drawer" aria-modal="true" role="dialog" aria-label="Filters" hidden>
+    <div class="filter-drawer__backdrop" id="js-filter-backdrop"></div>
+    <div class="filter-drawer__panel">
+      <div class="filter-drawer__header">
+        <h2 class="filter-drawer__title">Filters</h2>
+        <button class="btn btn--icon btn--ghost" id="js-filter-close" aria-label="Close filters">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      <div class="filter-drawer__body">
+        <!-- Mirrors sidebar content — populated by JS -->
+      </div>
+      <div class="filter-drawer__footer">
+        <button class="btn btn--outline btn--block" id="js-drawer-clear">Clear All</button>
+        <button class="btn btn--primary btn--block" id="js-drawer-apply">Show Results</button>
+      </div>
+    </div>
+  </div>
+
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <a href="index.html"   class="bottom-nav__item"><i data-lucide="house"></i><span class="bottom-nav__label">Home</span></a>
+    <a href="search.html"  class="bottom-nav__item"><i data-lucide="search"></i><span class="bottom-nav__label">Search</span></a>
+    <a href="cart.html"    class="bottom-nav__item"><i data-lucide="shopping-cart"></i><span class="bottom-nav__badge hidden"></span><span class="bottom-nav__label">Cart</span></a>
+    <a href="account.html" class="bottom-nav__item"><i data-lucide="user"></i><span class="bottom-nav__label">Account</span></a>
+  </nav>
+
+  <button id="back-to-top" aria-label="Back to top"><i data-lucide="arrow-up"></i></button>
+  <div id="offline-banner" role="alert"><i data-lucide="wifi-off"></i> No internet connection</div>
+  <div id="toast-container" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/search.js"></script>
+</body>
+</html>

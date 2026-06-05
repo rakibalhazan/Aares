@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account — Aares</title>
+  <meta name="description" content="Manage your Aares account, view orders, and update your profile.">
+  <link rel="icon" href="assets/logo.webp" type="image/webp">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1A1A1A">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/account.css">
+</head>
+<body>
+
+  <div id="progress-bar"></div>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__brand">
+        <img src="assets/logo.webp" alt="Aares" class="navbar__logo" width="32" height="32">
+        <span class="navbar__name">Aares</span>
+      </a>
+      <div class="navbar__links">
+        <a href="index.html"  class="navbar__link">Home</a>
+        <a href="search.html" class="navbar__link">Shop</a>
+      </div>
+      <div class="navbar__actions">
+        <a href="search.html"  class="navbar__icon-btn" aria-label="Search"><i data-lucide="search"></i></a>
+        <a href="cart.html"    class="navbar__icon-btn" aria-label="Cart"><i data-lucide="shopping-cart"></i><span class="cart-badge hidden"></span></a>
+        <a href="account.html" class="navbar__icon-btn" aria-label="Account"><i data-lucide="user"></i></a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-wrapper" id="main-content">
+    <div class="container">
+
+      <!-- ══ AUTH VIEW (logged out) ══ -->
+      <div id="js-auth-view" hidden>
+        <div class="auth-container">
+          <div class="auth-brand">
+            <img src="assets/logo.webp" alt="Aares" class="auth-brand__logo">
+            <span class="auth-brand__name">Aares</span>
+          </div>
+
+          <!-- Auth Tabs -->
+          <div class="auth-tabs" role="tablist">
+            <button class="auth-tab auth-tab--active" data-tab="login"    role="tab" aria-selected="true">Login</button>
+            <button class="auth-tab"                  data-tab="register" role="tab" aria-selected="false">Register</button>
+          </div>
+
+          <!-- Login Form -->
+          <div id="js-login-form" class="auth-form" role="tabpanel">
+            <div class="form-group">
+              <label class="form-label" for="login-credential">Mobile Number or Email</label>
+              <div class="input-wrapper">
+                <i data-lucide="user"></i>
+                <input type="text" id="login-credential" class="form-input form-input--icon"
+                       placeholder="01XXXXXXXXX or email@example.com" autocomplete="username">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="login-password">Password</label>
+              <div class="input-wrapper">
+                <i data-lucide="lock"></i>
+                <input type="password" id="login-password" class="form-input form-input--icon"
+                       placeholder="Your password" autocomplete="current-password">
+                <button class="input-action" id="js-login-pw-toggle" type="button" aria-label="Toggle password visibility">
+                  <i data-lucide="eye"></i>
+                </button>
+              </div>
+            </div>
+            <div class="auth-form__error hidden" id="js-login-error" role="alert"></div>
+            <button class="btn btn--primary btn--block btn--lg" id="js-login-btn">
+              <span class="btn__text">Login</span>
+            </button>
+            <button class="auth-form__forgot" id="js-show-forgot" type="button">
+              Forgot password?
+            </button>
+          </div>
+
+          <!-- Register Form -->
+          <div id="js-register-form" class="auth-form hidden" role="tabpanel">
+            <div class="form-group">
+              <label class="form-label" for="reg-name">Full Name</label>
+              <div class="input-wrapper">
+                <i data-lucide="user"></i>
+                <input type="text" id="reg-name" class="form-input form-input--icon" placeholder="Your full name" autocomplete="name">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-mobile">Mobile Number</label>
+              <div class="input-wrapper">
+                <i data-lucide="phone"></i>
+                <input type="tel" id="reg-mobile" class="form-input form-input--icon" placeholder="01XXXXXXXXX" autocomplete="tel">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-email">Email <span class="text-light">(optional)</span></label>
+              <div class="input-wrapper">
+                <i data-lucide="mail"></i>
+                <input type="email" id="reg-email" class="form-input form-input--icon" placeholder="email@example.com" autocomplete="email">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-address">Delivery Address</label>
+              <div class="input-wrapper">
+                <i data-lucide="map-pin"></i>
+                <input type="text" id="reg-address" class="form-input form-input--icon" placeholder="House, road, area, city" autocomplete="street-address">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-password">Password</label>
+              <div class="input-wrapper">
+                <i data-lucide="lock"></i>
+                <input type="password" id="reg-password" class="form-input form-input--icon" placeholder="At least 6 characters" autocomplete="new-password">
+                <button class="input-action" id="js-reg-pw-toggle" type="button" aria-label="Toggle password visibility">
+                  <i data-lucide="eye"></i>
+                </button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-sec-q">Security Question</label>
+              <select id="reg-sec-q" class="form-select">
+                <option value="">Select a question...</option>
+                <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
+                <option value="What was the name of your first pet?">What was the name of your first pet?</option>
+                <option value="What city were you born in?">What city were you born in?</option>
+                <option value="What is your favourite food?">What is your favourite food?</option>
+                <option value="What was the name of your primary school?">What was the name of your primary school?</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-sec-a">Security Answer</label>
+              <div class="input-wrapper">
+                <i data-lucide="shield-question"></i>
+                <input type="text" id="reg-sec-a" class="form-input form-input--icon" placeholder="Your answer" autocomplete="off">
+              </div>
+            </div>
+            <div class="auth-form__error hidden" id="js-reg-error" role="alert"></div>
+            <button class="btn btn--primary btn--block btn--lg" id="js-register-btn">
+              <span class="btn__text">Create Account</span>
+            </button>
+          </div>
+
+          <!-- Forgot Password -->
+          <div id="js-forgot-form" class="auth-form hidden" role="tabpanel">
+            <button class="auth-back-btn" id="js-back-to-login" type="button">
+              <i data-lucide="arrow-left"></i> Back to Login
+            </button>
+            <h2 class="auth-form__heading">Reset Password</h2>
+
+            <!-- Step 1: Enter mobile/email -->
+            <div id="js-forgot-step1">
+              <div class="form-group">
+                <label class="form-label" for="forgot-credential">Mobile Number or Email</label>
+                <div class="input-wrapper">
+                  <i data-lucide="user"></i>
+                  <input type="text" id="forgot-credential" class="form-input form-input--icon" placeholder="01XXXXXXXXX or email">
+                </div>
+              </div>
+              <div class="auth-form__error hidden" id="js-forgot-error" role="alert"></div>
+              <button class="btn btn--primary btn--block" id="js-forgot-next">
+                <span class="btn__text">Continue</span>
+              </button>
+            </div>
+
+            <!-- Step 2: Answer security question -->
+            <div id="js-forgot-step2" class="hidden">
+              <p class="auth-form__sec-q" id="js-forgot-question"></p>
+              <div class="form-group">
+                <label class="form-label" for="forgot-answer">Your Answer</label>
+                <input type="text" id="forgot-answer" class="form-input" placeholder="Your answer" autocomplete="off">
+              </div>
+              <div class="auth-form__error hidden" id="js-forgot-answer-error" role="alert"></div>
+              <button class="btn btn--primary btn--block" id="js-forgot-verify">
+                <span class="btn__text">Verify Answer</span>
+              </button>
+            </div>
+
+            <!-- Step 3: New password -->
+            <div id="js-forgot-step3" class="hidden">
+              <div class="form-group">
+                <label class="form-label" for="forgot-new-pw">New Password</label>
+                <div class="input-wrapper">
+                  <i data-lucide="lock"></i>
+                  <input type="password" id="forgot-new-pw" class="form-input form-input--icon" placeholder="At least 6 characters">
+                  <button class="input-action" id="js-new-pw-toggle" type="button" aria-label="Toggle password">
+                    <i data-lucide="eye"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="auth-form__error hidden" id="js-forgot-pw-error" role="alert"></div>
+              <button class="btn btn--primary btn--block" id="js-forgot-reset">
+                <span class="btn__text">Reset Password</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ══ ACCOUNT VIEW (logged in) ══ -->
+      <div id="js-account-view" hidden>
+
+        <!-- Account Header -->
+        <div class="account-header reveal">
+          <div class="account-header__avatar">
+            <i data-lucide="user"></i>
+          </div>
+          <div class="account-header__info">
+            <h1 class="account-header__name" id="js-account-name">—</h1>
+            <p class="account-header__mobile" id="js-account-mobile">—</p>
+          </div>
+          <button class="btn btn--ghost btn--sm" id="js-logout-btn" aria-label="Logout">
+            <i data-lucide="log-out"></i>
+            <span class="btn__text">Logout</span>
+          </button>
+        </div>
+
+        <!-- Account Tabs -->
+        <div class="account-tabs" role="tablist">
+          <button class="account-tab account-tab--active" data-tab="profile" role="tab">
+            <i data-lucide="user"></i> Profile
+          </button>
+          <button class="account-tab" data-tab="orders" role="tab" id="orders-tab">
+            <i data-lucide="package"></i> Orders
+          </button>
+          <button class="account-tab" data-tab="security" role="tab">
+            <i data-lucide="lock"></i> Security
+          </button>
+        </div>
+
+        <!-- Profile Tab -->
+        <div id="js-tab-profile" class="account-tab-panel">
+          <div class="account-card">
+            <div class="account-card__header">
+              <h2 class="account-card__title">Personal Information</h2>
+              <button class="btn btn--ghost btn--sm" id="js-edit-profile-btn">
+                <i data-lucide="pencil"></i> Edit
+              </button>
+            </div>
+            <div class="account-card__body" id="js-profile-view">
+              <!-- Injected by JS -->
+            </div>
+            <div class="account-card__body hidden" id="js-profile-edit">
+              <div class="form-group">
+                <label class="form-label" for="edit-name">Full Name</label>
+                <div class="input-wrapper"><i data-lucide="user"></i><input type="text" id="edit-name" class="form-input form-input--icon"></div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="edit-email">Email <span class="text-light">(optional)</span></label>
+                <div class="input-wrapper"><i data-lucide="mail"></i><input type="email" id="edit-email" class="form-input form-input--icon"></div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="edit-address">Delivery Address</label>
+                <textarea id="edit-address" class="form-textarea" rows="3"></textarea>
+              </div>
+              <div class="auth-form__error hidden" id="js-profile-error" role="alert"></div>
+              <div style="display:flex;gap:var(--sp-3)">
+                <button class="btn btn--primary" id="js-save-profile"><span class="btn__text">Save Changes</span></button>
+                <button class="btn btn--outline" id="js-cancel-edit">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Orders Tab -->
+        <div id="js-tab-orders" class="account-tab-panel hidden">
+          <div id="js-orders-list" aria-live="polite">
+            <!-- Injected by JS -->
+          </div>
+        </div>
+
+        <!-- Security Tab -->
+        <div id="js-tab-security" class="account-tab-panel hidden">
+          <div class="account-card">
+            <div class="account-card__header">
+              <h2 class="account-card__title">Change Password</h2>
+            </div>
+            <div class="account-card__body">
+              <div class="form-group">
+                <label class="form-label" for="sec-current-pw">Current Password</label>
+                <div class="input-wrapper">
+                  <i data-lucide="lock"></i>
+                  <input type="password" id="sec-current-pw" class="form-input form-input--icon" placeholder="Current password">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="sec-new-pw">New Password</label>
+                <div class="input-wrapper">
+                  <i data-lucide="lock"></i>
+                  <input type="password" id="sec-new-pw" class="form-input form-input--icon" placeholder="At least 6 characters">
+                </div>
+              </div>
+              <div class="auth-form__error hidden" id="js-pw-error" role="alert"></div>
+              <button class="btn btn--primary" id="js-change-pw-btn"><span class="btn__text">Update Password</span></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <a href="index.html"   class="bottom-nav__item"><i data-lucide="house"></i><span class="bottom-nav__label">Home</span></a>
+    <a href="search.html"  class="bottom-nav__item"><i data-lucide="search"></i><span class="bottom-nav__label">Search</span></a>
+    <a href="cart.html"    class="bottom-nav__item"><i data-lucide="shopping-cart"></i><span class="bottom-nav__badge hidden"></span><span class="bottom-nav__label">Cart</span></a>
+    <a href="account.html" class="bottom-nav__item"><i data-lucide="user"></i><span class="bottom-nav__label">Account</span></a>
+  </nav>
+
+  <button id="back-to-top" aria-label="Back to top"><i data-lucide="arrow-up"></i></button>
+  <div id="offline-banner" role="alert"><i data-lucide="wifi-off"></i> No internet connection</div>
+  <div id="toast-container" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/account.js"></script>
+</body>
+</html>

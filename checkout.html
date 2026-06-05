@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — Aares</title>
+  <meta name="description" content="Complete your order at Aares.">
+  <link rel="icon" href="assets/logo.webp" type="image/webp">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1A1A1A">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/checkout.css">
+</head>
+<body>
+
+  <div id="progress-bar"></div>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__brand">
+        <img src="assets/logo.webp" alt="Aares" class="navbar__logo" width="32" height="32">
+        <span class="navbar__name">Aares</span>
+      </a>
+      <div class="navbar__links">
+        <a href="index.html"  class="navbar__link">Home</a>
+        <a href="search.html" class="navbar__link">Shop</a>
+      </div>
+      <div class="navbar__actions">
+        <a href="cart.html"    class="navbar__icon-btn" aria-label="Cart"><i data-lucide="shopping-cart"></i><span class="cart-badge hidden"></span></a>
+        <a href="account.html" class="navbar__icon-btn" aria-label="Account"><i data-lucide="user"></i></a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-wrapper" id="main-content">
+    <div class="container">
+
+      <div class="page-title">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="cart.html"><i data-lucide="arrow-left"></i> Back to Cart</a>
+        </nav>
+        <h1>Checkout</h1>
+      </div>
+
+      <div class="checkout-layout">
+
+        <!-- Left: Delivery + Payment -->
+        <div class="checkout-form-col">
+
+          <!-- Delivery Address -->
+          <div class="checkout-card reveal">
+            <div class="checkout-card__header">
+              <div class="checkout-card__icon"><i data-lucide="map-pin"></i></div>
+              <h2 class="checkout-card__title">Delivery Address</h2>
+            </div>
+            <div class="checkout-card__body">
+              <div class="form-group">
+                <label class="form-label" for="co-address">Full Address</label>
+                <textarea id="co-address" class="form-textarea" placeholder="House/flat, road, area, city..." rows="3"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="co-phone">Mobile Number</label>
+                <div class="input-wrapper">
+                  <i data-lucide="phone"></i>
+                  <input type="tel" id="co-phone" class="form-input form-input--icon" placeholder="01XXXXXXXXX">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment Method -->
+          <div class="checkout-card reveal delay-1">
+            <div class="checkout-card__header">
+              <div class="checkout-card__icon"><i data-lucide="credit-card"></i></div>
+              <h2 class="checkout-card__title">Payment Method</h2>
+            </div>
+            <div class="checkout-card__body">
+              <div class="payment-options" role="radiogroup" aria-label="Payment method">
+                <label class="payment-option" id="opt-cod">
+                  <input type="radio" name="payment" value="COD" checked>
+                  <div class="payment-option__content">
+                    <i data-lucide="truck"></i>
+                    <div>
+                      <div class="payment-option__name">Cash on Delivery</div>
+                      <div class="payment-option__desc">Pay when your order arrives</div>
+                    </div>
+                  </div>
+                  <div class="payment-option__check"><i data-lucide="check"></i></div>
+                </label>
+
+                <label class="payment-option" id="opt-bkash">
+                  <input type="radio" name="payment" value="bKash">
+                  <div class="payment-option__content">
+                    <i data-lucide="smartphone"></i>
+                    <div>
+                      <div class="payment-option__name">bKash</div>
+                      <div class="payment-option__desc">Send money then enter transaction ID</div>
+                    </div>
+                  </div>
+                  <div class="payment-option__check"><i data-lucide="check"></i></div>
+                </label>
+              </div>
+
+              <!-- bKash Transaction ID (conditional) -->
+              <div class="bkash-field hidden" id="js-bkash-field">
+                <div class="bkash-info">
+                  <i data-lucide="info"></i>
+                  Send payment to our bKash number, then enter the transaction ID below.
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="co-txn-id">Transaction ID</label>
+                  <div class="input-wrapper">
+                    <i data-lucide="hash"></i>
+                    <input type="text" id="co-txn-id" class="form-input form-input--icon"
+                           placeholder="e.g. 8N7A6B5C4D" maxlength="30" autocomplete="off">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Notes -->
+          <div class="checkout-card reveal delay-2">
+            <div class="checkout-card__header">
+              <div class="checkout-card__icon"><i data-lucide="clipboard-list"></i></div>
+              <h2 class="checkout-card__title">Order Notes <span class="text-light text-sm">(optional)</span></h2>
+            </div>
+            <div class="checkout-card__body">
+              <textarea id="co-notes" class="form-textarea"
+                        placeholder="Special delivery instructions, preferred time, etc..."
+                        rows="3" maxlength="500"></textarea>
+            </div>
+          </div>
+
+          <!-- Terms -->
+          <label class="form-check reveal delay-3">
+            <input type="checkbox" id="co-terms">
+            <span class="form-check-label">
+              I confirm my order details are correct and agree to the terms of purchase.
+            </span>
+          </label>
+
+          <!-- Place Order -->
+          <button class="btn btn--primary btn--lg btn--block" id="js-place-order">
+            <i data-lucide="check-circle"></i>
+            <span class="btn__text">Place Order</span>
+          </button>
+
+        </div>
+
+        <!-- Right: Order Summary -->
+        <aside class="checkout-summary" aria-label="Order summary">
+          <h2 class="checkout-summary__title">Your Order</h2>
+          <div id="js-order-items" class="checkout-summary__items">
+            <!-- Injected by JS -->
+          </div>
+          <div class="checkout-summary__divider"></div>
+          <div class="checkout-summary__total-row">
+            <span>Total</span>
+            <span id="js-order-total" class="checkout-summary__total-val">—</span>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <a href="index.html"   class="bottom-nav__item"><i data-lucide="house"></i><span class="bottom-nav__label">Home</span></a>
+    <a href="search.html"  class="bottom-nav__item"><i data-lucide="search"></i><span class="bottom-nav__label">Search</span></a>
+    <a href="cart.html"    class="bottom-nav__item"><i data-lucide="shopping-cart"></i><span class="bottom-nav__badge hidden"></span><span class="bottom-nav__label">Cart</span></a>
+    <a href="account.html" class="bottom-nav__item"><i data-lucide="user"></i><span class="bottom-nav__label">Account</span></a>
+  </nav>
+
+  <button id="back-to-top" aria-label="Back to top"><i data-lucide="arrow-up"></i></button>
+  <div id="offline-banner" role="alert"><i data-lucide="wifi-off"></i> No internet connection</div>
+  <div id="toast-container" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/notifications.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

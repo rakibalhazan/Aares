@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found — Aares</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="assets/logo.webp" type="image/webp">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1A1A1A">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/global.css">
+  <style>
+    .not-found {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--sp-8);
+      gap: var(--sp-5);
+    }
+    .not-found__num {
+      font-family: var(--font-display);
+      font-size: clamp(80px, 20vw, 160px);
+      font-weight: var(--weight-bold);
+      color: transparent;
+      -webkit-text-stroke: 2px var(--clr-border-dark);
+      letter-spacing: var(--tracking-tight);
+      line-height: 1;
+    }
+    .not-found__title {
+      font-family: var(--font-display);
+      font-size: var(--text-3xl);
+      font-weight: var(--weight-semibold);
+      color: var(--clr-text);
+    }
+    .not-found__desc { font-size: var(--text-base); color: var(--clr-text-muted); max-width: 340px; }
+    .not-found__actions { display: flex; gap: var(--sp-3); flex-wrap: wrap; justify-content: center; margin-top: var(--sp-2); }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__brand">
+        <img src="assets/logo.webp" alt="Aares" class="navbar__logo" width="32" height="32">
+        <span class="navbar__name">Aares</span>
+      </a>
+    </div>
+  </nav>
+
+  <main class="page-wrapper">
+    <div class="not-found">
+      <div class="not-found__num anim-fade-in">404</div>
+      <h1 class="not-found__title reveal">Page Not Found</h1>
+      <p class="not-found__desc reveal delay-1">
+        The page you are looking for does not exist or has been moved.
+      </p>
+      <div class="not-found__actions reveal delay-2">
+        <a href="index.html"  class="btn btn--primary"><i data-lucide="house"></i><span class="btn__text">Go Home</span></a>
+        <a href="search.html" class="btn btn--outline"><i data-lucide="search"></i><span class="btn__text">Browse Products</span></a>
+      </div>
+    </div>
+  </main>
+
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <a href="index.html"   class="bottom-nav__item"><i data-lucide="house"></i><span class="bottom-nav__label">Home</span></a>
+    <a href="search.html"  class="bottom-nav__item"><i data-lucide="search"></i><span class="bottom-nav__label">Search</span></a>
+    <a href="cart.html"    class="bottom-nav__item"><i data-lucide="shopping-cart"></i><span class="bottom-nav__label">Cart</span></a>
+    <a href="account.html" class="bottom-nav__item"><i data-lucide="user"></i><span class="bottom-nav__label">Account</span></a>
+  </nav>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="css/variables.css" onerror=""></script>
+  <script>document.addEventListener('DOMContentLoaded', () => { if(window.lucide) lucide.createIcons(); });</script>
+</body>
+</html>
