@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aares — Quality Products Delivered Across Bangladesh</title>
+  <meta name="description" content="Shop premium products at Aares. Fast delivery across Bangladesh. Cash on delivery, bKash and Nagad accepted. Browse hundreds of quality products.">
+  <meta name="keywords" content="online shop bangladesh, cash on delivery, bkash shop, aares">
+  <link rel="canonical" href="https://aares.vercel.app/">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://aares.vercel.app/">
+  <meta property="og:title"       content="Aares — Quality Products Delivered Across Bangladesh">
+  <meta property="og:description" content="Shop premium products with fast delivery. COD, bKash and Nagad accepted.">
+  <meta property="og:image"       content="https://aares.vercel.app/assets/og-image.png">
+  <meta property="og:site_name"   content="Aares">
+
+  <!-- Twitter -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Aares — Quality Products">
+  <meta name="twitter:description" content="Fast delivery across Bangladesh. COD and bKash accepted.">
+  <meta name="twitter:image"       content="https://aares.vercel.app/assets/og-image.png">
+
+  <!-- Favicon & PWA -->
+  <link rel="icon"     href="assets/logo.webp" type="image/webp">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1A1A1A">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Aares">
+
+  <!-- Font Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/index.css">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Aares",
+    "url": "https://aares.vercel.app",
+    "description": "Shop premium products with fast delivery across Bangladesh",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://aares.vercel.app/search.html?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+</head>
+
+<body>
+
+  <!-- ── Top Progress Bar ── -->
+  <div id="progress-bar" role="progressbar" aria-hidden="true"></div>
+
+  <!-- ── Top Navbar ── -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a href="index.html" class="navbar__brand" aria-label="Aares home">
+        <img src="assets/logo.webp" alt="Aares" class="navbar__logo" width="32" height="32">
+        <span class="navbar__name">Aares</span>
+      </a>
+      <div class="navbar__links" role="menubar">
+        <a href="index.html"  class="navbar__link" role="menuitem">Home</a>
+        <a href="search.html" class="navbar__link" role="menuitem">Shop</a>
+      </div>
+      <div class="navbar__actions">
+        <a href="search.html" class="navbar__icon-btn" aria-label="Search products">
+          <i data-lucide="search"></i>
+        </a>
+        <a href="cart.html" class="navbar__icon-btn" aria-label="View cart">
+          <i data-lucide="shopping-cart"></i>
+          <span class="cart-badge hidden" aria-live="polite"></span>
+        </a>
+        <a href="account.html" class="navbar__icon-btn" aria-label="My account">
+          <i data-lucide="user"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Main Content ── -->
+  <main class="page-wrapper" id="main-content">
+
+    <!-- ── Hero ── -->
+    <section class="hero" aria-label="Welcome banner">
+      <div class="hero__bg" aria-hidden="true"></div>
+      <div class="hero__ghost-text" aria-hidden="true">AARES</div>
+
+      <div class="container hero__inner">
+
+        <!-- Text Side -->
+        <div class="hero__content">
+          <div class="hero__eyebrow reveal">
+            <span class="hero__eyebrow-line"></span>
+            Welcome to Aares
+          </div>
+          <h1 class="hero__title reveal delay-1">
+            Shop with<br>
+            <em class="hero__title-accent">Confidence</em>
+          </h1>
+          <p class="hero__subtitle reveal delay-2">
+            Premium products delivered to your door across Bangladesh.
+            Cash on delivery, bKash and Nagad accepted.
+          </p>
+          <div class="hero__actions reveal delay-3">
+            <a href="search.html" class="btn btn--primary btn--lg">
+              <i data-lucide="shopping-bag"></i>
+              <span class="btn__text">Shop Now</span>
+            </a>
+            <a href="search.html?sort=popular" class="btn btn--outline btn--lg">
+              <span class="btn__text">Most Popular</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Stats Card (desktop) -->
+        <div class="hero__visual reveal delay-4" aria-hidden="true">
+          <div class="hero__card anim-float">
+            <div class="hero__stat">
+              <span class="hero__stat-num" id="js-product-count">—</span>
+              <span class="hero__stat-label">Products</span>
+            </div>
+            <div class="hero__divider"></div>
+            <div class="hero__stat">
+              <i data-lucide="truck" class="hero__stat-icon"></i>
+              <span class="hero__stat-label">Fast Delivery</span>
+            </div>
+            <div class="hero__divider"></div>
+            <div class="hero__stat">
+              <i data-lucide="shield-check" class="hero__stat-icon"></i>
+              <span class="hero__stat-label">Secure Orders</span>
+            </div>
+            <div class="hero__divider"></div>
+            <div class="hero__stat">
+              <i data-lucide="smartphone" class="hero__stat-icon"></i>
+              <span class="hero__stat-label">COD &amp; bKash</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Scroll Hint -->
+      <div class="hero__scroll-hint" aria-hidden="true">
+        <i data-lucide="chevron-down"></i>
+      </div>
+    </section>
+
+    <!-- ── Category Chips ── -->
+    <section class="categories-section" aria-label="Browse by category">
+      <div class="container">
+        <div class="chips-scroll" id="js-category-chips" role="list">
+          <button class="chip chip--active" data-category="" role="listitem">All</button>
+          <!-- More chips injected by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ── New Arrivals ── -->
+    <section class="section products-section" aria-labelledby="new-arrivals-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <h2 class="section-title" id="new-arrivals-title">
+              New <span>Arrivals</span>
+            </h2>
+            <p class="section-subtitle">Just added to the store</p>
+          </div>
+          <a href="search.html?sort=newest" class="section-link" aria-label="View all new arrivals">
+            View all <i data-lucide="arrow-right"></i>
+          </a>
+        </div>
+        <div class="product-grid" id="js-new-arrivals" aria-live="polite" aria-label="New arrivals products">
+          <!-- Skeletons injected by JS, then replaced by products -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Promo Banner ── -->
+    <div class="promo-banner reveal" role="complementary" aria-label="Payment methods">
+      <div class="promo-banner__inner container">
+        <div class="promo-banner__text">
+          <span class="promo-banner__eyebrow">Zero risk shopping</span>
+          <h2 class="promo-banner__title">Order now.<br>Pay when it arrives.</h2>
+          <p class="promo-banner__desc">We accept Cash on Delivery, bKash, and Nagad for your convenience.</p>
+        </div>
+        <div class="promo-banner__badges">
+          <span class="promo-badge">
+            <i data-lucide="truck"></i> COD
+          </span>
+          <span class="promo-badge">
+            <i data-lucide="smartphone"></i> bKash
+          </span>
+          <span class="promo-badge">
+            <i data-lucide="credit-card"></i> Nagad
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Most Popular ── -->
+    <section class="section products-section" aria-labelledby="popular-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <h2 class="section-title" id="popular-title">
+              Most <span>Popular</span>
+            </h2>
+            <p class="section-subtitle">Loved by our customers</p>
+          </div>
+          <a href="search.html?sort=popular" class="section-link" aria-label="View all popular products">
+            View all <i data-lucide="arrow-right"></i>
+          </a>
+        </div>
+        <div class="product-grid" id="js-popular" aria-live="polite" aria-label="Popular products">
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Top Rated ── -->
+    <section class="section products-section" aria-labelledby="rated-title">
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <h2 class="section-title" id="rated-title">
+              Top <span>Rated</span>
+            </h2>
+            <p class="section-subtitle">Highest rated by verified buyers</p>
+          </div>
+          <a href="search.html?sort=top_rated" class="section-link" aria-label="View all top rated products">
+            View all <i data-lucide="arrow-right"></i>
+          </a>
+        </div>
+        <div class="product-grid" id="js-top-rated" aria-live="polite" aria-label="Top rated products">
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Recently Viewed (shown only if data exists) ── -->
+    <section class="section products-section" id="js-recently-viewed-section"
+             aria-labelledby="recent-title" hidden>
+      <div class="container">
+        <div class="section-header reveal">
+          <div>
+            <h2 class="section-title" id="recent-title">
+              Recently <span>Viewed</span>
+            </h2>
+          </div>
+        </div>
+        <div class="product-grid" id="js-recently-viewed" aria-live="polite">
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Footer ── -->
+    <footer class="footer" role="contentinfo">
+      <div class="container">
+        <div class="footer__inner">
+
+          <div class="footer__brand">
+            <a href="index.html" class="footer__brand-link" aria-label="Aares home">
+              <img src="assets/logo.webp" alt="Aares" class="footer__logo" width="36" height="36">
+              <span class="footer__name">Aares</span>
+            </a>
+            <p class="footer__tagline">
+              Quality products delivered to your door across Bangladesh. Fast, reliable, and affordable.
+            </p>
+          </div>
+
+          <div class="footer__col">
+            <h3 class="footer__col-title">Shop</h3>
+            <ul class="footer__links">
+              <li><a href="search.html">All Products</a></li>
+              <li><a href="search.html?sort=newest">New Arrivals</a></li>
+              <li><a href="search.html?sort=popular">Most Popular</a></li>
+              <li><a href="search.html?sort=top_rated">Top Rated</a></li>
+            </ul>
+          </div>
+
+          <div class="footer__col">
+            <h3 class="footer__col-title">Account</h3>
+            <ul class="footer__links">
+              <li><a href="account.html">My Account</a></li>
+              <li><a href="account.html#orders">My Orders</a></li>
+              <li><a href="cart.html">My Cart</a></li>
+            </ul>
+          </div>
+
+          <div class="footer__col">
+            <h3 class="footer__col-title">Support</h3>
+            <ul class="footer__links">
+              <li>
+                <a href="tel:+8801XXXXXXXXX" class="footer__contact-link">
+                  <i data-lucide="phone"></i>
+                  Call us to check orders
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="footer__bottom">
+          <p class="footer__copy">
+            &copy; <span id="js-year"></span> Aares. All rights reserved.
+          </p>
+          <div class="footer__payment-tags">
+            <span class="footer__ptag">COD</span>
+            <span class="footer__ptag">bKash</span>
+            <span class="footer__ptag">Nagad</span>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- ── Bottom Navigation (Mobile Only) ── -->
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <a href="index.html"  class="bottom-nav__item" aria-label="Home">
+      <i data-lucide="house"></i>
+      <span class="bottom-nav__label">Home</span>
+    </a>
+    <a href="search.html" class="bottom-nav__item" aria-label="Search">
+      <i data-lucide="search"></i>
+      <span class="bottom-nav__label">Search</span>
+    </a>
+    <a href="cart.html"   class="bottom-nav__item" aria-label="Cart">
+      <i data-lucide="shopping-cart"></i>
+      <span class="bottom-nav__badge hidden" aria-live="polite"></span>
+      <span class="bottom-nav__label">Cart</span>
+    </a>
+    <a href="account.html" class="bottom-nav__item" aria-label="Account">
+      <i data-lucide="user"></i>
+      <span class="bottom-nav__label">Account</span>
+    </a>
+  </nav>
+
+  <!-- ── Back to Top ── -->
+  <button id="back-to-top" aria-label="Scroll back to top">
+    <i data-lucide="arrow-up"></i>
+  </button>
+
+  <!-- ── Offline Banner ── -->
+  <div id="offline-banner" role="alert" aria-live="assertive">
+    <i data-lucide="wifi-off"></i>
+    No internet connection
+  </div>
+
+  <!-- ── Toast Container ── -->
+  <div id="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+  <!-- ── Scripts (load order matters) ── -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/index.js"></script>
+
+</body>
+</html>
